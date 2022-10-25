@@ -24,7 +24,8 @@ class AppointmentListEncoder(ModelEncoder):
         "date" ,
         "time" ,
         "reason",
-        "technician"
+        "technician",
+        "completed",
         ]
     encoders = {
         'technician': TechnicianListEncoder()
@@ -61,6 +62,16 @@ def api_delete_appointment(request,pk):
         count, _ = Appointment.objects.filter(id=pk).delete()
         return JsonResponse({"deleted": count > 0})
 
+@require_http_methods(["PUT"])
+def api_complete_appointment(request,pk):
+    if request.method == "PUT":
+        Appointment.objects.filter(id=pk).update(completed="True")
+        appointment = Appointment.objects.get(id=pk)
+        return JsonResponse(
+            appointment,
+            encoder=AppointmentListEncoder,
+            safe=False
+        )
 
 @require_http_methods(["GET", "POST"])
 def api_list_technician(request):

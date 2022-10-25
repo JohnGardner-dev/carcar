@@ -20,9 +20,11 @@ class Appointment(models.Model):
         related_name = "appointments",
         on_delete=models.CASCADE
     )
+    completed = models.BooleanField(default=False, null=True)
 
     def __str__(self):
         return self.vin
+
 
 class AutomobileVO(models.Model):
     color = models.CharField(max_length=50)
