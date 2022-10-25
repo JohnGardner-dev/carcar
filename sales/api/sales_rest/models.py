@@ -10,6 +10,7 @@ class AutomobileVO(models.Model):
     vin = models.CharField(max_length=50)
     model = models.CharField(max_length=100)
     manufacturer = models.CharField(max_length=100)
+    sold = models.BooleanField(default=False)
 
     def __str__(self):
         return f"{self.vin}-{self.year} {self.manufacturer} {self.model}"
@@ -34,9 +35,9 @@ class Customer(models.Model):
 
 class SalesRecord(models.Model):
     automobile = models.ForeignKey(AutomobileVO, on_delete=models.PROTECT)
-    sales_person = models.ForeignKey(SalesPerson, on_delete=models.PROTECT)
-    customer = models.ForeignKey(Customer, on_delete=models.PROTECT)
-    sales_price = models.DecimalField(max_digits=8, decimal_places=2)
+    sales_person = models.ForeignKey(SalesPerson, on_delete=models.DO_NOTHING)
+    customer = models.ForeignKey(Customer, on_delete=models.DO_NOTHING)
+    sales_price = models.FloatField()
 
     def __str__(self):
         return f"{self.customer}'s sale of {self.automobile.vin}"

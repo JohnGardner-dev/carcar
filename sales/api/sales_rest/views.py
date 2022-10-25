@@ -43,9 +43,9 @@ class SalesRecordListEncoder(ModelEncoder):
         "sales_price",
     ]
     encoders = {
-        "automobile": AutomobileVODetailEncoder,
-        "sales_person": SalesPersonDetailEncoder,
-        "customer": CustomerDetailEncoder,
+        "automobile": AutomobileVODetailEncoder(),
+        "sales_person": SalesPersonDetailEncoder(),
+        "customer": CustomerDetailEncoder(),
     }
 
 
@@ -59,9 +59,9 @@ class SalesRecordDetailEncoder(ModelEncoder):
         "sales_price",
     ]
     encoders = {
-        "automobile": AutomobileVODetailEncoder,
-        "sales_person": SalesPersonDetailEncoder,
-        "customer": CustomerDetailEncoder,
+        "automobile": AutomobileVODetailEncoder(),
+        "sales_person": SalesPersonDetailEncoder(),
+        "customer": CustomerDetailEncoder(),
     }
 
 
@@ -73,24 +73,43 @@ def listSalesRecord(request):
         sales = SalesRecord.objects.all()
         return JsonResponse(
             {"sales": sales},
-            encoder=SalesRecordListEncoder
-        )
-    else:
-        content = json.loads(request)
-
-        try:
-            automobile = AutomobileVO.objects.get(
-                import_href=content["automobile"])
-            content["automobile"] = automobile
-        except AutomobileVO.DoesNotExist:
-            return JsonResponse({"message": "Invalid automobile"})
-
-        record = SalesRecord.create(**content)
-        return JsonResponse(
-            record,
-            encoder=SalesRecordDetailEncoder,
+            encoder=SalesRecordListEncoder,
             safe=False,
         )
+    else:
+        content = json.loads(request.body)
+        car_to_be_sold = AutomobileVO.objects.get(
+            import_href=content["automobile"])
+        if car_to_be_sold.sold == False:
+            try:
+                automobile = AutomobileVO.objects.get(
+                    import_href=content["automobile"])
+                content["automobile"] = automobile
+            except AutomobileVO.DoesNotExist:
+                return JsonResponse({"message": "Invalid automobile"})
+            try:
+                sales_person = SalesPerson.objects.get(
+                    name=content["sales_person"])
+                content["sales_person"] = sales_person
+            except SalesPerson.DoesNotExist:
+                return JsonResponse({"message": "Invalid Sales Person"})
+            try:
+                customer = Customer.objects.get(name=content["customer"])
+                content["customer"] = customer
+            except Customer.DoesNotExist:
+                return JsonResponse({"message": "Invalid Customer"})
+
+            record = SalesRecord.objects.create(**content)
+            car_to_be_sold.sold = True
+            car_to_be_sold.save()
+
+            return JsonResponse(
+                record,
+                encoder=SalesRecordDetailEncoder,
+                safe=False,
+            )
+        else:
+            return JsonResponse({"message": "Car has already been sold"})
 
 
 @require_http_methods(["GET", "DELETE"])
@@ -101,16 +120,17 @@ def salesRecordDetail(request, pk):
         return JsonResponse(
             record,
             encoder=SalesRecordDetailEncoder,
+            safe=False,
         )
     else:
         count, _ = SalesRecord.objects.filter(id=pk).delete()
         return JsonResponse({"deleted": count > 0})
 
 
-@require_http_methods(["POST"])
+@require_http_methods("POST")
 def createSalesPerson(request):
-    content = json.loads(request)
-    salesPerson = SalesPerson.create(**content)
+    content = json.loads(request.body)
+    salesPerson = SalesPerson.objects.create(**content)
     return JsonResponse(
         salesPerson,
         encoder=SalesPersonDetailEncoder,
@@ -121,8 +141,8 @@ def createSalesPerson(request):
 @require_http_methods(["POST"])
 def createCustomer(request):
     # create a customer
-    content = json.loads(request)
-    customer = Customer.create(**content)
+    content = json.loads(request.body)
+    customer = Customer.objects.create(**content)
     return JsonResponse(
         customer,
         encoder=CustomerDetailEncoder,
