@@ -8,3 +8,21 @@ root.render(
     <App />
   </React.StrictMode>
 );
+
+async function loadAppointments() {
+  const response = await fetch('http://localhost:8080/api/appointments/');
+  console.log("RESPONSE::",response);
+
+  if(response.ok) {
+    const data = await response.json()
+    console.log("DATA::", data)
+    root.render(
+      <React.StrictMode>
+        <App appointments={data.appointments} loadAppointments={loadAppointments}/>
+      </React.StrictMode>
+    )
+  } else {
+    console.error(response)
+  }
+}
+loadAppointments()

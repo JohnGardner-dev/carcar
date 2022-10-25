@@ -31,6 +31,14 @@ class AppointmentListEncoder(ModelEncoder):
         'technician': TechnicianListEncoder()
     }
 
+    def get_extra_data(self, o):
+        count = AutomobileVO.objects.filter(vin=o.vin).count()
+        if count > 0:
+            return {"vip": "True"}
+        else:
+            return {"vip": "False"}
+
+
 
 @require_http_methods(["GET", "POST"])
 def api_list_appointment(request):

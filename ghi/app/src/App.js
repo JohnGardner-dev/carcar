@@ -5,7 +5,11 @@ import MainPage from './MainPage';
 import Nav from './Nav';
 import TechnicianForm from './TechnicianForm';
 
-function App() {
+function App(props) {
+  if (props.appointments===undefined){
+  return null
+}
+
   return (
     <BrowserRouter>
       <Nav />
@@ -13,7 +17,7 @@ function App() {
         <Routes>
           <Route path="/" element={<MainPage />} />
           <Route path="technician/" element={<TechnicianForm />}/>
-          <Route path="appointments/" element = {<ListAppointment />}/>
+          <Route path="appointments/" element = {<ListAppointment appointments={props.appointments} loadAppointments={props.loadAppointments}/>}/>
           <Route path="appointments/new" element = {<AppointmentForm />} />
         </Routes>
       </div>
