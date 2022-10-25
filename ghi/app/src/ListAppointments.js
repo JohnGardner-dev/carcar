@@ -1,18 +1,15 @@
 function ListAppointment(props) {
 
   async function deleteAppointment(id) {
-    console.log("CLICKED DELETE BUTTON")
     const deleteUrl = `http://localhost:8080/api/appointments/${id}`
     const fetchConfig = {
       method: "delete"
     }
 
     const response = await fetch(deleteUrl, fetchConfig)
-    console.log("RESPONSe:::", response)
 
     if(response.ok) {
       const reponse = await fetch('http://localhost:8080/api/appointments/')
-      console.log("props",props)
       props.loadAppointments()
     }
   }
@@ -27,7 +24,6 @@ function ListAppointment(props) {
 
     if(response.ok) {
       const reponse = await fetch('http://localhost:8080/api/appointments/')
-      console.log("props",props)
       props.loadAppointments()
     }
 
@@ -42,6 +38,7 @@ function ListAppointment(props) {
                 <th>Date</th>
                 <th>Time</th>
                 <th>Reason</th>
+                <th>Technician</th>
                 <th>VIP?</th>
               </tr>
             </thead>
@@ -54,6 +51,7 @@ function ListAppointment(props) {
                   <td>{ appointment.date }</td>
                   <td>{ appointment.time }</td>
                   <td>{ appointment.reason }</td>
+                  <td>{appointment.technician.name}</td>
                   <td>{ appointment.vip }</td>
                   <td><button onClick={() => deleteAppointment(appointment.id)}>Cancel</button><button onClick={() => completeAppointment(appointment.id)}>Completed</button></td>
                 </tr>

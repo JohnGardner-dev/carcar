@@ -36,8 +36,6 @@ class AppointmentForm extends React.Component {
 
         const response = await fetch(appointmentUrl,fetchConfig);
         if (response.ok) {
-            const newAppointment = await response.json();
-
             const cleared = {
                 vin:'',
                 owner: '',
@@ -83,11 +81,9 @@ class AppointmentForm extends React.Component {
         const url = 'http://localhost:8080/api/technicians/';
 
         const response = await fetch(url)
-        console.log("====TECHNICIAN REPONSE===", response)
 
         if (response.ok) {
             const data = await response.json();
-            console.log("===TECHNICIAN DATA===",data)
             this.setState({technicians: data.technicians})
         }
     }
