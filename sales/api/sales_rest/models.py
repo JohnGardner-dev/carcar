@@ -4,8 +4,7 @@ from django.db import models
 
 
 class AutomobileVO(models.Model):
-    imported_href = models.CharField(max_length=100)
-    imported_id = models.SmallIntegerField()
+    import_href = models.CharField(max_length=100)
     color = models.CharField(max_length=30)
     year = models.SmallIntegerField()
     vin = models.CharField(max_length=50)
