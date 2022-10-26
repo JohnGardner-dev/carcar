@@ -14,12 +14,13 @@ function AppointmentHistory(props) {
 
         return (
             <div>
-                <h3>Service Appointments</h3>
+            <p></p>
             <div className="input-group mb-3">
             <input type="search" id="search" className="form-control" value={searchInput} onChange={handleChange} placeholder="Search Vin" aria-label="Recipient's username" aria-describedby="button-addon2"/>
             <div className="input-group-append">
             </div>
             </div>
+            <h3>Service Appointments</h3>
             <table className="table table-striped">
             <thead>
               <tr>
