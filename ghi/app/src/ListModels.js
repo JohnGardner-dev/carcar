@@ -14,7 +14,7 @@ function ListModels(props) {
             <tr key={model.id}>
               <td>{ model.name}</td>
               <td>{ model.manufacturer.name}</td>
-              <td><img src={ model.picture_url } width="100" height="100" ></img></td>
+              <td><img src={ model.picture_url } width="200" height="150" ></img></td>
             </tr>
           );
         })}

@@ -53,7 +53,7 @@ function ListAppointment(props) {
                   <td>{ appointment.reason }</td>
                   <td>{appointment.technician.name}</td>
                   <td>{ appointment.vip }</td>
-                  <td><button onClick={() => deleteAppointment(appointment.id)}>Cancel</button><button onClick={() => completeAppointment(appointment.id)}>Completed</button></td>
+                  <td><button className="btn btn-outline-danger" onClick={() => deleteAppointment(appointment.id)}>Cancel</button><button className="btn btn-outline-success" onClick={() => completeAppointment(appointment.id)}>Completed</button></td>
                 </tr>
               );
             })}
