@@ -1,6 +1,9 @@
 function ListManufacturers(props) {
 
     return (
+      <div>
+      <p></p>
+        <h3>Manufacturers</h3>
         <table className="table table-striped">
         <thead>
           <tr>
@@ -19,6 +22,7 @@ function ListManufacturers(props) {
         })}
         </tbody>
         </table>
+        </div>
 
     )
 }

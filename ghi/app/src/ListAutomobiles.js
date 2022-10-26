@@ -2,7 +2,10 @@ function ListAutomobiles(props) {
 
 
     return (
-        <table className="table table-striped">
+       <div>
+        <p></p>
+      <h3>Automobiles</h3>
+       <table className="table table-striped">
         <thead>
           <tr>
             <th>VIN</th>
@@ -26,6 +29,7 @@ function ListAutomobiles(props) {
         })}
         </tbody>
         </table>
+        </div>
     )
 }
 

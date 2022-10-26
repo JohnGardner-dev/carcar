@@ -30,6 +30,9 @@ function ListAppointment(props) {
   }
 
         return (
+          <div>
+          <p></p>
+          <h3>Service Appointments</h3>
             <table className="table table-striped">
             <thead>
               <tr>
@@ -59,6 +62,7 @@ function ListAppointment(props) {
             })}
             </tbody>
             </table>
+            </div>
         )
     }
 

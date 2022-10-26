@@ -1,5 +1,8 @@
 function ListModels(props) {
     return (
+      <div>
+      <p></p>
+      <h3>Vehicle Models</h3>
         <table className="table table-striped">
         <thead>
           <tr>
@@ -20,6 +23,7 @@ function ListModels(props) {
         })}
         </tbody>
         </table>
+        </div>
     )
 }
 

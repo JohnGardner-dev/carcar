@@ -20,7 +20,7 @@ function AppointmentHistory(props) {
             <div className="input-group-append">
             </div>
             </div>
-            <h3>Service Appointments</h3>
+            <h3>Service Appointments History</h3>
             <table className="table table-striped">
             <thead>
               <tr>
