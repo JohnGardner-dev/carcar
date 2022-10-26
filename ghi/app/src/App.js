@@ -17,10 +17,10 @@ function App(props) {
       <div className="container">
         <Routes>
           <Route path="/" element={<MainPage />} />
-          <Route path="technician/" element={<TechnicianForm />}/>
-          <Route path="appointments/" element = {<ListAppointment appointments={props.appointments} loadAppointments={props.loadAppointments}/>}/>
-          <Route path="appointments/new" element = {<AppointmentForm />} />
-          <Route path="appointments/history" element = {<AppointmentHistory appointments={props.appointments} />} />
+          <Route path="/service/technician" element={<TechnicianForm />}/>
+          <Route path="/service/appointments" element = {<ListAppointment appointments={props.appointments} loadAppointments={props.loadAppointments}/>}/>
+          <Route path="/service/appointments/new" element = {<AppointmentForm />} />
+          <Route path="/service/appointments/history" element = {<AppointmentHistory appointments={props.appointments} />} />
         </Routes>
       </div>
     </BrowserRouter>
