@@ -13,7 +13,7 @@ class AutomobileVOListEncoder(ModelEncoder):
 
 class TechnicianListEncoder(ModelEncoder):
     model = Technician
-    properties = ["name", "number"]
+    properties = ["name", "number","id"]
 
 class AppointmentListEncoder(ModelEncoder):
     model = Appointment
@@ -52,7 +52,7 @@ def api_list_appointment(request):
         content = json.loads(request.body)
 
         try:
-            technician = Technician.objects.get(number=content["technician"])
+            technician = Technician.objects.get(id=content["technician"])
             content["technician"] = technician
         except Technician.DoesNotExist:
             return JsonResponse({"message": "Invalid Technician Number"},

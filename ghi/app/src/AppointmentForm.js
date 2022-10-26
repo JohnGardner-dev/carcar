@@ -120,7 +120,7 @@ class AppointmentForm extends React.Component {
                         <option value="">Choose a Technician</option>
                         {this.state.technicians.map(technician => {
                             return (
-                                <option key={technician.number} value={technician.number}>
+                                <option key={technician.id} value={technician.id}>
                                 {technician.name}
                                 </option>
                             )

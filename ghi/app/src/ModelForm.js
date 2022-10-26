@@ -20,7 +20,7 @@ async handleSubmit(event) {
     event.preventDefault()
     const data = {...this.state};
     delete data.manufacturers;
-    console.log("SUBMITTED DATA FOR MANUFACTUERES:",data)
+
 
     const modelUrl = 'http://localhost:8100/api/models/'
     const fetchConfig ={
@@ -64,7 +64,6 @@ async componentDidMount() {
 
     if (response.ok) {
         const data = await response.json();
-        console.log("MANUFACTURER DATA:", data)
         this.setState({manufacturers:data.manufacturers})
     }
 }

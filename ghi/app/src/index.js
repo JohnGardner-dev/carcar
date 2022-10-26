@@ -13,15 +13,14 @@ async function loadAppointments() {
   const appointmentsResponse = await fetch('http://localhost:8080/api/appointments/');
   const manufacturersResponse = await fetch('http://localhost:8100/api/manufacturers/');
   const modelsResponse = await fetch('http://localhost:8100/api/models/');
+  const autosResponse = await fetch ('http://localhost:8100/api/automobiles/');
 
-  if(appointmentsResponse.ok && manufacturersResponse.ok && modelsResponse.ok) {
+  if(appointmentsResponse.ok && manufacturersResponse.ok && modelsResponse.ok && autosResponse.ok) {
     const appointmentData = await appointmentsResponse.json()
     const manufacturerData = await manufacturersResponse.json()
     const modelData = await modelsResponse.json()
+    const autoData = await autosResponse.json()
 
-    console.log("APPOINTMENT DATA::", appointmentData)
-    console.log("MANUFACTURER DATA::", manufacturerData)
-    console.log("MODEL DATA::", modelData)
 
     root.render(
       <React.StrictMode>
@@ -29,7 +28,8 @@ async function loadAppointments() {
         appointments={appointmentData.appointments}
         loadAppointments={loadAppointments}
         manufacturers={manufacturerData.manufacturers}
-        models={modelData.models} />
+        models={modelData.models}
+        autos={autoData.autos} />
       </React.StrictMode>
     )
   } else {
