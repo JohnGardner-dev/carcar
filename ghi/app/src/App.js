@@ -4,6 +4,7 @@ import ListAppointment from './ListAppointments';
 import MainPage from './MainPage';
 import Nav from './Nav';
 import TechnicianForm from './TechnicianForm';
+import AppointmentHistory from './AppointmentHistory'
 
 function App(props) {
   if (props.appointments===undefined){
@@ -19,6 +20,7 @@ function App(props) {
           <Route path="technician/" element={<TechnicianForm />}/>
           <Route path="appointments/" element = {<ListAppointment appointments={props.appointments} loadAppointments={props.loadAppointments}/>}/>
           <Route path="appointments/new" element = {<AppointmentForm />} />
+          <Route path="appointments/history" element = {<AppointmentHistory appointments={props.appointments} />} />
         </Routes>
       </div>
     </BrowserRouter>
