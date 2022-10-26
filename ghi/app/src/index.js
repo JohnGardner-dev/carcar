@@ -10,19 +10,22 @@ root.render(
 );
 
 async function loadAppointments() {
-  const response = await fetch('http://localhost:8080/api/appointments/');
-  console.log("RESPONSE::",response);
+  const appointmentsResponse = await fetch('http://localhost:8080/api/appointments/');
+  const manufacturersResponse = await fetch('http://localhost:8100/api/manufacturers/');
 
-  if(response.ok) {
-    const data = await response.json()
-    console.log("DATA::", data)
+  if(appointmentsResponse.ok && manufacturersResponse.ok) {
+    const appointmentData = await appointmentsResponse.json()
+    const manufacturerData = await manufacturersResponse.json()
+
+    console.log("DATA::", appointmentData)
+    console.log("MANUFACTURER DATA::", manufacturerData)
     root.render(
       <React.StrictMode>
-        <App appointments={data.appointments} loadAppointments={loadAppointments}/>
+        <App appointments={appointmentData.appointments} loadAppointments={loadAppointments} manufacturers={manufacturerData.manufacturers}/>
       </React.StrictMode>
     )
   } else {
-    console.error(response)
+    console.error(appointmentsResponse)
   }
 }
 loadAppointments()
