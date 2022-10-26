@@ -26,6 +26,13 @@ function Nav() {
               <li><a className='dropdown-item' href="/manufacturers/new">Enter a Manufacturer</a></li>
                 </ul>
             </li>
+            <li className='nav-item dropdown'>
+              <a className='nav-link dropdown-toggle' href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Vehicle Models</a>
+              <ul className='dropdown-menu'>
+              <li><a className='dropdown-item' href="/models">List Models</a></li>
+              <li><a className='dropdown-item' href="/models/new">Enter a Model</a></li>
+                </ul>
+            </li>
           </ul>
         </div>
       </div>

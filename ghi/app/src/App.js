@@ -7,12 +7,11 @@ import TechnicianForm from './TechnicianForm';
 import AppointmentHistory from './AppointmentHistory'
 import ListManufacturers from './ListManufacturers';
 import ManufacturerForm from './ManufacturerForm';
+import ListModels from './ListModels';
+import ModelForm from './ModelForm';
 
 function App(props) {
-  if (props.appointments===undefined){
-  return null
-}
-if (props.manufacturers===undefined){
+  if (props.appointments===undefined || props.manufacturers===undefined){
   return null
 }
 
@@ -28,6 +27,8 @@ if (props.manufacturers===undefined){
           <Route path="/service/appointments/history" element = {<AppointmentHistory appointments={props.appointments} />} />
           <Route path="/manufacturers" element = {<ListManufacturers manufacturers={props.manufacturers}/>} />
           <Route path="/manufacturers/new" element = {<ManufacturerForm />} />
+          <Route path="/models" element = {<ListModels models = {props.models} />} />
+          <Route path="/models/new" element = {<ModelForm/>} />
         </Routes>
       </div>
     </BrowserRouter>
