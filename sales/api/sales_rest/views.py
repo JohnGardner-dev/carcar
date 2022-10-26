@@ -131,22 +131,31 @@ def salesRecordDetail(request, pk):
         return JsonResponse({"deleted": count > 0})
 
 
-@require_http_methods("POST")
-def createSalesPerson(request):
-    content = json.loads(request.body)
+# @require_http_methods("POST")
+# def createSalesPerson(request):
+#     content = json.loads(request.body)
+#     salesPerson = SalesPerson.objects.create(**content)
+#     return JsonResponse(
+#         salesPerson,
+#         encoder=SalesPersonDetailEncoder,
+#         safe=False,
+#     )
+
+
+@require_http_methods(["GET", "POST"])
+def listSalesPeople(request):
+    if request.method == "GET":
+        sales_people = SalesPerson.objects.all()
+        return JsonResponse(
+            sales_people,
+            encoder=SalesPersonDetailEncoder,
+            safe=False,
+        )
+    else:
+        content = json.loads(request.body)
     salesPerson = SalesPerson.objects.create(**content)
     return JsonResponse(
         salesPerson,
-        encoder=SalesPersonDetailEncoder,
-        safe=False,
-    )
-
-
-@require_http_methods("GET")
-def listSalesPeople(request):
-    sales_people = SalesPerson.objects.all()
-    return JsonResponse(
-        sales_people,
         encoder=SalesPersonDetailEncoder,
         safe=False,
     )
