@@ -161,26 +161,23 @@ def listSalesPeople(request):
     )
 
 
-@require_http_methods(["POST"])
-def createCustomer(request):
-    # create a customer
-    content = json.loads(request.body)
-    customer = Customer.objects.create(**content)
-    return JsonResponse(
-        customer,
-        encoder=CustomerDetailEncoder,
-        safe=False,
-    )
-
-
-@require_http_methods("GET")
+@require_http_methods(["GET", "POST"])
 def listCustomers(request):
-    customers = Customer.objects.all()
-    return JsonResponse(
-        customers,
-        encoder=CustomerDetailEncoder,
-        safe=False,
-    )
+    if request.method == "GET":
+        customers = Customer.objects.all()
+        return JsonResponse(
+            customers,
+            encoder=CustomerDetailEncoder,
+            safe=False,
+        )
+    else:
+        content = json.loads(request.body)
+        customer = Customer.objects.create(**content)
+        return JsonResponse(
+            customer,
+            encoder=CustomerDetailEncoder,
+            safe=False,
+        )
 
 
 @require_http_methods("GET")
