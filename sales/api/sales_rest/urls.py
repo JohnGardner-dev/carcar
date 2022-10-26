@@ -14,7 +14,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from .views import listSalesRecord, salesRecordDetail, createSalesPerson, createCustomer, listAutomobileVOs
+from .views import listSalesRecord, salesRecordDetail, createSalesPerson, createCustomer, listAutomobileVOs, listSalesPeople, listCustomers
 
 urlpatterns = [
     path('records/', listSalesRecord, name='listSalesRecord'),
@@ -22,4 +22,6 @@ urlpatterns = [
     path('salesperson/new/', createSalesPerson, name='createSalesPerson'),
     path('customers/new/', createCustomer, name='createCustomer'),
     path('inventory/', listAutomobileVOs, name='listAutomobileVOs'),
+    path('salespersons/', listSalesPeople, name='listSalesPeople'),
+    path('customers/', listCustomers, name="listCustomers"),
 ]

@@ -11,6 +11,7 @@ import json
 class AutomobileVODetailEncoder(ModelEncoder):
     model = AutomobileVO
     properties = [
+        "import_href",
         "vin",
         "year",
         "color",
@@ -141,6 +142,16 @@ def createSalesPerson(request):
     )
 
 
+@require_http_methods("GET")
+def listSalesPeople(request):
+    sales_people = SalesPerson.objects.all()
+    return JsonResponse(
+        sales_people,
+        encoder=SalesPersonDetailEncoder,
+        safe=False,
+    )
+
+
 @require_http_methods(["POST"])
 def createCustomer(request):
     # create a customer
@@ -148,6 +159,16 @@ def createCustomer(request):
     customer = Customer.objects.create(**content)
     return JsonResponse(
         customer,
+        encoder=CustomerDetailEncoder,
+        safe=False,
+    )
+
+
+@require_http_methods("GET")
+def listCustomers(request):
+    customers = Customer.objects.all()
+    return JsonResponse(
+        customers,
         encoder=CustomerDetailEncoder,
         safe=False,
     )
