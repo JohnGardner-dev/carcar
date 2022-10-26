@@ -12,8 +12,11 @@ class AutomobileVODetailEncoder(ModelEncoder):
     model = AutomobileVO
     properties = [
         "vin",
-        "color",
         "year",
+        "color",
+        "manufacturer",
+        "model",
+        "sold",
     ]
 
 
@@ -146,5 +149,15 @@ def createCustomer(request):
     return JsonResponse(
         customer,
         encoder=CustomerDetailEncoder,
+        safe=False,
+    )
+
+
+@require_http_methods("GET")
+def listAutomobileVOs(request):
+    content = AutomobileVO.objects.all()
+    return JsonResponse(
+        content,
+        encoder=AutomobileVODetailEncoder,
         safe=False,
     )

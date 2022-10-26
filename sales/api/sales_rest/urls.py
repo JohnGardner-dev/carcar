@@ -14,11 +14,12 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from .views import listSalesRecord, salesRecordDetail, createSalesPerson, createCustomer
+from .views import listSalesRecord, salesRecordDetail, createSalesPerson, createCustomer, listAutomobileVOs
 
 urlpatterns = [
-    path('sales/records/', listSalesRecord, name='listSalesRecord'),
-    path('sales/records/<int:pk>/', salesRecordDetail, name='salesRecordDetail'),
-    path('sales/salesperson/new/', createSalesPerson, name='createSalesPerson'),
-    path('sales/customers/new/', createCustomer, name='createCustomer'),
+    path('records/', listSalesRecord, name='listSalesRecord'),
+    path('records/<int:pk>/', salesRecordDetail, name='salesRecordDetail'),
+    path('salesperson/new/', createSalesPerson, name='createSalesPerson'),
+    path('customers/new/', createCustomer, name='createCustomer'),
+    path('inventory/', listAutomobileVOs, name='listAutomobileVOs'),
 ]
