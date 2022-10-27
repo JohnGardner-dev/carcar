@@ -1,4 +1,4 @@
-import { NavLink, Link, Link } from 'react-router-dom';
+import { NavLink, Link } from 'react-router-dom';
 
 function Nav() {
   return (
