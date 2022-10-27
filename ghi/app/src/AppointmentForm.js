@@ -18,6 +18,7 @@ class AppointmentForm extends React.Component {
     this.handleReasonChange = this.handleReasonChange.bind(this)
     this.handleTechnicianChange = this.handleTechnicianChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
+    this.handleClick = this.handleClick.bind(this);
     }
 
     async handleSubmit(event) {
@@ -36,15 +37,6 @@ class AppointmentForm extends React.Component {
 
         const response = await fetch(appointmentUrl,fetchConfig);
         if (response.ok) {
-            const cleared = {
-                vin:'',
-                owner: '',
-                date: '',
-                time: '',
-                reason: '',
-                technician: '',
-            };
-            this.setState(cleared)
 
             var preElement= document.getElementById("pre-form");
             preElement.classList.add("d-none")
@@ -81,6 +73,24 @@ class AppointmentForm extends React.Component {
     handleTechnicianChange(event) {
         const value = event.target.value
         this.setState({ technician: value })
+    }
+
+    handleClick(event) {
+        const cleared = {
+            vin:'',
+            owner: '',
+            date: '',
+            time: '',
+            reason: '',
+            technician: '',
+        };
+        this.setState(cleared)
+
+        var preElement= document.getElementById("pre-form");
+        preElement.classList.remove("d-none")
+
+        var postElement= document.getElementById("post-form");
+        postElement.classList.add("d-none")
     }
 
     async componentDidMount () {
@@ -139,8 +149,9 @@ class AppointmentForm extends React.Component {
                 </div>
             </div>
             </div>
-            <div className='success d-none' id='post-form' >
+            <div className='col text-center d-none ' id='post-form' >
                     <img src='https://i.etsystatic.com/8806157/r/il/c08af8/1183447726/il_570xN.1183447726_sneo.jpg' width="500" height="500" className="rounded mx-auto d-block"/>
+                    <button onClick={this.handleClick} className="btn btn-primary btn-lg" id='post-form'>Add Another?</button>
                     </div>
             </div>
         )

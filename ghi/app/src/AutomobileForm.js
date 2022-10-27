@@ -14,6 +14,7 @@ class AutomobileForm extends React.Component{
         this.handleVinChange = this.handleVinChange.bind(this);
         this.handleModelChange = this.handleModelChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this)
+        this.handleClick = this.handleClick.bind(this);
     }
 
 handleColorChange(event) {
@@ -54,20 +55,29 @@ async handleSubmit(event) {
     if(response.ok) {
         const newAuto = await response.json()
 
-        const cleared = {
-            "color": '',
-            "year": '',
-            "vin": '',
-            "model_id": '',
-        }
-        this.setState(cleared)
-
         var preElement= document.getElementById("pre-form");
         preElement.classList.add("d-none")
 
         var postElement= document.getElementById("post-form");
         postElement.classList.remove("d-none")
     }
+}
+
+handleClick(event) {
+
+    const cleared = {
+        "color": '',
+        "year": '',
+        "vin": '',
+        "model_id": '',
+    }
+    this.setState(cleared)
+
+    var preElement= document.getElementById("pre-form");
+    preElement.classList.remove("d-none")
+
+    var postElement= document.getElementById("post-form");
+    postElement.classList.add("d-none")
 }
 
     async componentDidMount() {
@@ -117,8 +127,9 @@ async handleSubmit(event) {
                 </div>
             </div>
             </div>
-            <div className='success d-none' id='post-form' >
+            <div className='col text-center d-none ' id='post-form' >
                     <img src='https://i.etsystatic.com/8806157/r/il/c08af8/1183447726/il_570xN.1183447726_sneo.jpg' width="500" height="500" className="rounded mx-auto d-block"/>
+                    <button onClick={this.handleClick} className="btn btn-primary btn-lg" id='post-form'>Add Another?</button>
                     </div>
             </div>
         )

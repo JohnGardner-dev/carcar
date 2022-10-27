@@ -14,6 +14,7 @@ class ModelForm extends React.Component {
         this.handlePictureUrlChange = this.handlePictureUrlChange.bind(this)
         this.handleManufacturerChange = this.handleManufacturerChange.bind(this)
         this.handleSubmit = this.handleSubmit.bind(this)
+        this.handleClick = this.handleClick.bind(this);
     }
 
 async handleSubmit(event) {
@@ -34,12 +35,7 @@ async handleSubmit(event) {
     const response = await fetch(modelUrl,fetchConfig);
 
     if (response.ok) {
-        const cleared = {
-            name: '',
-            picture_url: '',
-            manufacturer_id: '',
-        }
-        this.setState(cleared)
+
         var preElement= document.getElementById("pre-form");
         preElement.classList.add("d-none")
 
@@ -47,6 +43,21 @@ async handleSubmit(event) {
         postElement.classList.remove("d-none")
 
     }
+}
+
+handleClick(event) {
+
+    const cleared = {
+        name: '',
+        picture_url: '',
+        manufacturer_id: '',
+    }
+    this.setState(cleared)
+    var preElement= document.getElementById("pre-form");
+    preElement.classList.remove("d-none")
+
+    var postElement= document.getElementById("post-form");
+    postElement.classList.add("d-none")
 }
 
 handleNameChange(event) {
@@ -107,8 +118,9 @@ async componentDidMount() {
                 </div>
             </div>
             </div>
-            <div className='success d-none' id='post-form' >
+            <div className='col text-center d-none ' id='post-form' >
                     <img src='https://i.etsystatic.com/8806157/r/il/c08af8/1183447726/il_570xN.1183447726_sneo.jpg' width="500" height="500" className="rounded mx-auto d-block"/>
+                    <button onClick={this.handleClick} className="btn btn-primary btn-lg" id='post-form'>Add Another?</button>
                     </div>
             </div>
         )
