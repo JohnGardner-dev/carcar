@@ -11,6 +11,7 @@ class AddSalesPerson extends React.Component {
         this.handleNameChange = this.handleNameChange.bind(this);
         this.handleIDnumberChange = this.handleIDnumberChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleClick = this.handleClick.bind(this);
     }
 
     async handleSubmit(event) {
@@ -58,6 +59,20 @@ class AddSalesPerson extends React.Component {
         this.setState({ employeeID: value })
     }
 
+    handleClick(event) {
+        const cleared = {
+            name: '',
+            address: '',
+            phoneNumber: '',
+        }
+        this.setState(cleared)
+        const preElement = document.getElementById("pre-form");
+        preElement.classList.remove("d-none")
+
+        const postElement = document.getElementById("post-form");
+        postElement.classList.add("d-none")
+    }
+
     render() {
         return (
             <>
@@ -75,8 +90,9 @@ class AddSalesPerson extends React.Component {
                         <button className="btn btn-primary btn-lg">Create</button>
                     </form>
                 </div>
-                <div className='success d-none' id='post-form' >
+                <div className='col text-center d-none' id='post-form' >
                     <img src='https://i.etsystatic.com/8806157/r/il/c08af8/1183447726/il_570xN.1183447726_sneo.jpg' width="500" height="500" className="rounded mx-auto d-block" />
+                    <button onClick={this.handleClick} className="btn btn-primary btn-lg" id='post-form'>Add Another?</button>
                 </div>
 
             </>
