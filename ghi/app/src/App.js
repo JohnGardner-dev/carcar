@@ -13,7 +13,7 @@ import ListAutomobiles from './ListAutomobiles';
 import AutomobileForm from './AutomobileForm';
 
 function App(props) {
-  if (props.appointments===undefined || props.manufacturers===undefined || props.autos===undefined){
+  if (props.appointments===undefined || props.manufacturers===undefined || props.autos===undefined || props.autos===undefined){
   return null
 }
 

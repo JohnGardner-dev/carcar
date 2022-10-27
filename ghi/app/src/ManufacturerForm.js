@@ -71,8 +71,6 @@ class ManufacturerForm extends React.Component {
                     <img src='https://i.etsystatic.com/8806157/r/il/c08af8/1183447726/il_570xN.1183447726_sneo.jpg' width="500" height="500" className="rounded mx-auto d-block"/>
                     </div>
             </div>
-
-
         )
     }
 }

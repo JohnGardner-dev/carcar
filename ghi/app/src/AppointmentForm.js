@@ -45,6 +45,12 @@ class AppointmentForm extends React.Component {
                 technician: '',
             };
             this.setState(cleared)
+
+            var preElement= document.getElementById("pre-form");
+            preElement.classList.add("d-none")
+
+            var postElement= document.getElementById("post-form");
+            postElement.classList.remove("d-none")
         }
     }
     handleVinChange(event) {
@@ -90,7 +96,8 @@ class AppointmentForm extends React.Component {
 
     render() {
         return(
-            <div className="row">
+            <div>
+            <div className="row" id='pre-form'>
             <div className="offset-3 col-6">
                 <div className="shadow p-4 mt-4">
                 <h1>Create a new Appointment</h1>
@@ -131,6 +138,10 @@ class AppointmentForm extends React.Component {
                 </form>
                 </div>
             </div>
+            </div>
+            <div className='success d-none' id='post-form' >
+                    <img src='https://i.etsystatic.com/8806157/r/il/c08af8/1183447726/il_570xN.1183447726_sneo.jpg' width="500" height="500" className="rounded mx-auto d-block"/>
+                    </div>
             </div>
         )
     }
