@@ -16,8 +16,6 @@ async function loadAppointments() {
   if(appointmentsResponse.ok) {
     const appointmentData = await appointmentsResponse.json()
 
-
-
     root.render(
       <React.StrictMode>
         <App

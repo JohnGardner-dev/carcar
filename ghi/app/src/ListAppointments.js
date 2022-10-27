@@ -9,7 +9,6 @@ function ListAppointment(props) {
     const response = await fetch(deleteUrl, fetchConfig)
 
     if(response.ok) {
-      const reponse = await fetch('http://localhost:8080/api/appointments/')
       props.loadAppointments()
     }
   }
@@ -23,7 +22,6 @@ function ListAppointment(props) {
     const response = await fetch(completeUrl,fetchConfig)
 
     if(response.ok) {
-      const reponse = await fetch('http://localhost:8080/api/appointments/')
       props.loadAppointments()
     }
 

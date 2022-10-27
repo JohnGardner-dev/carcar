@@ -1,4 +1,4 @@
-import { NavLink } from 'react-router-dom';
+import { NavLink, Link } from 'react-router-dom';
 
 function Nav() {
   return (
@@ -13,31 +13,31 @@ function Nav() {
             <li className='nav-item dropdown'>
               <a className='nav-link dropdown-toggle' href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Manufacturer</a>
               <ul className='dropdown-menu'>
-              <li><a className='dropdown-item' href="/manufacturers">List Manufacturers</a></li>
-              <li><a className='dropdown-item' href="/manufacturers/new">Enter a Manufacturer</a></li>
+              <li><Link className='dropdown-item' to="/manufacturers">List Manufacturers</Link></li>
+              <li><Link className='dropdown-item' to="/manufacturers/new">Enter a Manufacturer</Link></li>
                 </ul>
             </li>
             <li className='nav-item dropdown'>
               <a className='nav-link dropdown-toggle' href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Vehicle Models</a>
               <ul className='dropdown-menu'>
-              <li><a className='dropdown-item' href="/models">List Models</a></li>
-              <li><a className='dropdown-item' href="/models/new">Enter a Model</a></li>
+              <li><Link className='dropdown-item' to="/models">List Models</Link ></li>
+              <li><Link  className='dropdown-item' to="/models/new">Enter a Model</Link ></li>
                 </ul>
             </li>
             <li className='nav-item dropdown'>
               <a className='nav-link dropdown-toggle' href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Inventory</a>
               <ul className='dropdown-menu'>
-              <li><a className='dropdown-item' href="/automobiles">List Automobiles</a></li>
-              <li><a className='dropdown-item' href="/automobiles/new">Enter an Automobile</a></li>
+              <li><Link  className='dropdown-item' to="/automobiles">List Automobiles</Link ></li>
+              <li><Link  className='dropdown-item' to="/automobiles/new">Enter an Automobile</Link ></li>
                 </ul>
             </li>
             <li className='nav-item dropdown'>
               <a className='nav-link dropdown-toggle' href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Service</a>
               <ul className='dropdown-menu'>
-              <li><a className='dropdown-item' href="/service/technician/">Enter a Technician</a></li>
-                <li><a className='dropdown-item' href="/service/appointments/">List Appointments</a></li>
-                <li><a className='dropdown-item' href="/service/appointments/new/">Enter a Service Appointment</a></li>
-                <li><a className='dropdown-item' href="/service/appointments/history/">Appointment History</a></li>
+              <li><Link  className='dropdown-item' to="/service/technician/">Enter a Technician</Link ></li>
+                <li><Link  className='dropdown-item' to="/service/appointments/">List Appointments</Link ></li>
+                <li><Link  className='dropdown-item' to="/service/appointments/new/">Enter a Service Appointment</Link ></li>
+                <li><Link  className='dropdown-item' to="/service/appointments/history/">Appointment History</Link ></li>
                 </ul>
             </li>
           </ul>
