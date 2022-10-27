@@ -63,6 +63,11 @@ class CreateSalesRecord extends React.Component {
             }
 
             this.setState(cleared);
+            const preElement = document.getElementById("pre-form");
+            preElement.classList.add("d-none")
+
+            const postElement = document.getElementById("post-form");
+            postElement.classList.remove("d-none")
         }
     }
 
@@ -173,7 +178,8 @@ class CreateSalesRecord extends React.Component {
                                 <span className='input-group-text'>.00</span>
                             </div>
                         </div>
-                        <button className="btn btn-primary btn-lg">Create</button>
+                        <button className="btn btn-primary btn-lg" id='pre-form'>Create</button>
+                        <h2 className='d-none' style={{ color: 'green' }} id="post-form">SUCCESS!</h2>
                     </form>
                 </div>
             </>
