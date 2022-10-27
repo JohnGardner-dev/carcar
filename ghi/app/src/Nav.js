@@ -1,4 +1,4 @@
-import { NavLink } from 'react-router-dom';
+import { NavLink, Link } from 'react-router-dom';
 
 function Nav() {
   return (
@@ -13,10 +13,10 @@ function Nav() {
             <li className='nav-item dropdown'>
               <a className='nav-link dropdown-toggle' href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Sales</a>
               <ul className='dropdown-menu'>
-                <li><a className='dropdown-item' href='/sales/employees/new/'>Add Sales Person</a></li>
-                <li><a className='dropdown-item' href='/sales/customers/new/'>Add Customer</a></li>
-                <li><a className='dropdown-item' href='/sales/records/new/'>Create Sales Record</a></li>
-                <li><a className='dropdown-item' href='/sales/records/'>List Sales History</a></li>
+                <li><Link className='dropdown-item' to='/sales/employees/new/'>Add Sales Person</Link></li>
+                <li><Link className='dropdown-item' to='/sales/customers/new/'>Add Customer</Link></li>
+                <li><Link className='dropdown-item' to='/sales/records/new/'>Create Sales Record</Link></li>
+                <li><Link className='dropdown-item' to='/sales/records/'>List Sales History</Link></li>
               </ul>
             </li>
           </ul>
