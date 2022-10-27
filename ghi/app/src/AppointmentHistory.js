@@ -9,7 +9,6 @@ function AppointmentHistory(props) {
     const handleChange = (event) => {
         event.preventDefault()
         setSearchInput(event.target.value)
-        console.log("SEARCH INPUT::", searchInput)
     }
 
         return (

@@ -39,7 +39,6 @@ handleModelChange(event) {
 async handleSubmit(event) {
     event.preventDefault()
     const data = {...this.state}
-    console.log("AUTOSUBMITTED DATA:",data)
     delete data.models
 
     const autosUrl = 'http://localhost:8100/api/automobiles/'
@@ -54,7 +53,6 @@ async handleSubmit(event) {
     const response = await fetch(autosUrl,fetchConfig)
     if(response.ok) {
         const newAuto = await response.json()
-        console.log("NEW AUTO:", newAuto)
 
         const cleared = {
             "color": '',
