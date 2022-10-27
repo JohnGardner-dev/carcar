@@ -11,19 +11,18 @@ root.render(
 
 async function loadAppointments() {
   const appointmentsResponse = await fetch('http://localhost:8080/api/appointments/');
-  const autosResponse = await fetch ('http://localhost:8100/api/automobiles/');
 
-  if(appointmentsResponse.ok && autosResponse.ok) {
+
+  if(appointmentsResponse.ok) {
     const appointmentData = await appointmentsResponse.json()
-    const autoData = await autosResponse.json()
+
 
 
     root.render(
       <React.StrictMode>
         <App
         appointments={appointmentData.appointments}
-        loadAppointments={loadAppointments}
-        autos={autoData.autos} />
+        loadAppointments={loadAppointments}/>
       </React.StrictMode>
     )
   } else {

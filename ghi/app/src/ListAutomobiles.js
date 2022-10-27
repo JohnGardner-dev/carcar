@@ -1,6 +1,25 @@
-function ListAutomobiles(props) {
+import React from "react";
+
+class ListAutomobiles extends React.Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      autos: []
+    }
+  }
+
+  async componentDidMount() {
+    const url = 'http://localhost:8100/api/automobiles/'
+    const response = await fetch(url)
 
 
+    if (response.ok) {
+        const data = await response.json();
+        this.setState({autos:data.autos})
+    }
+}
+
+  render() {
     return (
        <div>
         <p></p>
@@ -16,7 +35,7 @@ function ListAutomobiles(props) {
           </tr>
         </thead>
         <tbody>
-        {props.autos.map(auto => {
+        {this.state.autos.map(auto => {
           return (
             <tr key={auto.id}>
               <td>{ auto.vin}</td>
@@ -31,6 +50,7 @@ function ListAutomobiles(props) {
         </table>
         </div>
     )
+}
 }
 
 export default ListAutomobiles
