@@ -12,8 +12,9 @@ import ModelForm from './ModelForm';
 import ListAutomobiles from './ListAutomobiles';
 import AutomobileForm from './AutomobileForm';
 
+
 function App(props) {
-  if (props.appointments===undefined || props.manufacturers===undefined || props.autos===undefined || props.autos===undefined){
+  if (props.appointments===undefined || props.autos===undefined || props.autos===undefined){
   return null
 }
 
@@ -27,7 +28,7 @@ function App(props) {
           <Route path="/service/appointments" element = {<ListAppointment appointments={props.appointments} loadAppointments={props.loadAppointments}/>}/>
           <Route path="/service/appointments/new" element = {<AppointmentForm />} />
           <Route path="/service/appointments/history" element = {<AppointmentHistory appointments={props.appointments} />} />
-          <Route path="/manufacturers" element = {<ListManufacturers manufacturers={props.manufacturers}/>} />
+          <Route path="/manufacturers" element = {<ListManufacturers />} />
           <Route path="/manufacturers/new" element = {<ManufacturerForm />} />
           <Route path="/models" element = {<ListModels models = {props.models} />} />
           <Route path="/models/new" element = {<ModelForm/>} />

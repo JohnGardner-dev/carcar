@@ -1,4 +1,25 @@
-function ListManufacturers(props) {
+import React from "react";
+
+class ListManufacturers extends React.Component {
+    constructor(props) {
+        super(props)
+        this.state = {
+            manufacturers:[]
+        }
+    }
+
+    async componentDidMount() {
+        const url = 'http://localhost:8100/api/manufacturers/'
+        const response = await fetch(url)
+
+
+        if (response.ok) {
+            const data = await response.json();
+            this.setState({manufacturers:data.manufacturers})
+        }
+    }
+
+    render() {
 
     return (
       <div>
@@ -12,7 +33,7 @@ function ListManufacturers(props) {
           </tr>
         </thead>
         <tbody>
-        {props.manufacturers.map(manufacturer => {
+        {this.state.manufacturers.map(manufacturer => {
           return (
             <tr key={manufacturer.id}>
               <td>{ manufacturer.id }</td>
@@ -25,6 +46,7 @@ function ListManufacturers(props) {
         </div>
 
     )
+}
 }
 
 export default ListManufacturers
