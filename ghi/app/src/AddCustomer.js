@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 
 class AddCustomer extends React.Component {
@@ -13,6 +14,7 @@ class AddCustomer extends React.Component {
         this.handleAddressChange = this.handleAddressChange.bind(this);
         this.handlePhoneNumberChange = this.handlePhoneNumberChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleClick = this.handleClick.bind(this);
     }
 
     async handleSubmit(event) {
@@ -37,12 +39,12 @@ class AddCustomer extends React.Component {
         if (response.ok) {
             const newCustomer = await response.json();
             console.log(newCustomer);
-            const cleared = {
-                name: '',
-                address: '',
-                phoneNumber: '',
-            }
-            this.setState(cleared);
+            // const cleared = {
+            //     name: '',
+            //     address: '',
+            //     phoneNumber: '',
+            // }
+            // this.setState(cleared);
             const preElement = document.getElementById("pre-form");
             preElement.classList.add("d-none")
 
@@ -66,6 +68,20 @@ class AddCustomer extends React.Component {
         this.setState({ phoneNumber: value })
     }
 
+    handleClick(event) {
+        const cleared = {
+            name: '',
+            address: '',
+            phoneNumber: '',
+        }
+        this.setState(cleared)
+        const preElement = document.getElementById("pre-form");
+        preElement.classList.remove("d-none")
+
+        const postElement = document.getElementById("post-form");
+        postElement.classList.add("d-none")
+    }
+
     render() {
         return (
             <>
@@ -87,8 +103,9 @@ class AddCustomer extends React.Component {
                         <button className="btn btn-primary btn-lg">Create</button>
                     </form>
                 </div>
-                <div className='success d-none' id='post-form' >
+                <div className='col text-center d-none ' id='post-form' >
                     <img src='https://i.etsystatic.com/8806157/r/il/c08af8/1183447726/il_570xN.1183447726_sneo.jpg' width="500" height="500" className="rounded mx-auto d-block" />
+                    <button onClick={this.handleClick} className="btn btn-primary btn-lg" id='post-form'>Add Another?</button>
                 </div>
             </>
         )
