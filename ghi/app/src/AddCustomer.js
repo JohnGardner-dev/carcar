@@ -43,6 +43,11 @@ class AddCustomer extends React.Component {
                 phoneNumber: '',
             }
             this.setState(cleared);
+            const preElement = document.getElementById("pre-form");
+            preElement.classList.add("d-none")
+
+            const postElement = document.getElementById("post-form");
+            postElement.classList.remove("d-none")
         }
     }
 
@@ -79,7 +84,8 @@ class AddCustomer extends React.Component {
                             <input onChange={this.handlePhoneNumberChange} value={this.state.phoneNumber} type='text' className='form-control' placeholder='Phone Number' required name='phoneNumber' />
                             <label htmlFor='phoneNumber'>Phone Number</label>
                         </div>
-                        <button className="btn btn-primary btn-lg">Create</button>
+                        <button className="btn btn-primary btn-lg" id='pre-form'>Create</button>
+                        <h2 className='d-none' style={{ color: 'green' }} id="post-form">SUCCESS!</h2>
                     </form>
                 </div>
             </>

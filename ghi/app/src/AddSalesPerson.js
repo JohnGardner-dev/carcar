@@ -40,6 +40,11 @@ class AddSalesPerson extends React.Component {
                 employeeID: '',
             }
             this.setState(cleared);
+            const preElement = document.getElementById("pre-form");
+            preElement.classList.add("d-none")
+
+            const postElement = document.getElementById("post-form");
+            postElement.classList.remove("d-none")
         }
     }
 
@@ -67,7 +72,8 @@ class AddSalesPerson extends React.Component {
                             <input onChange={this.handleIDnumberChange} value={this.state.employeeID} type='text' className='form-control' placeholder='ID number' required name='id' />
                             <label htmlFor='id'>ID Number</label>
                         </div>
-                        <button className="btn btn-primary btn-lg">Create</button>
+                        <button className="btn btn-primary btn-lg" id='pre-form'>Create</button>
+                        <h2 className='d-none' style={{ color: 'green' }} id="post-form">SUCCESS!</h2>
                     </form>
                 </div>
             </>
