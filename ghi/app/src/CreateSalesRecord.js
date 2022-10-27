@@ -136,7 +136,7 @@ class CreateSalesRecord extends React.Component {
     render() {
         return (
             <>
-                <div className='container'>
+                <div className='container' id='pre-form'>
                     <h1>Create A Sales Record</h1>
                     <form onSubmit={this.handleSubmit} id="create-sales-record-form">
                         <div className='mb-3'>
@@ -178,9 +178,11 @@ class CreateSalesRecord extends React.Component {
                                 <span className='input-group-text'>.00</span>
                             </div>
                         </div>
-                        <button className="btn btn-primary btn-lg" id='pre-form'>Create</button>
-                        <h2 className='d-none' style={{ color: 'green' }} id="post-form">SUCCESS!</h2>
+                        <button className="btn btn-primary btn-lg">Create</button>
                     </form>
+                </div>
+                <div className='success d-none' id='post-form' >
+                    <img src='https://i.etsystatic.com/8806157/r/il/c08af8/1183447726/il_570xN.1183447726_sneo.jpg' width="500" height="500" className="rounded mx-auto d-block" />
                 </div>
             </>
         )

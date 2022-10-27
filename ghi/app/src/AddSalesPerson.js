@@ -61,7 +61,7 @@ class AddSalesPerson extends React.Component {
     render() {
         return (
             <>
-                <div className='container'>
+                <div className='container' id='pre-form'>
                     <h1>Create a Sales Person</h1>
                     <form onSubmit={this.handleSubmit} id='create-sales-person-form'>
                         <div className='form-floating mb-3'>
@@ -72,10 +72,13 @@ class AddSalesPerson extends React.Component {
                             <input onChange={this.handleIDnumberChange} value={this.state.employeeID} type='text' className='form-control' placeholder='ID number' required name='id' />
                             <label htmlFor='id'>ID Number</label>
                         </div>
-                        <button className="btn btn-primary btn-lg" id='pre-form'>Create</button>
-                        <h2 className='d-none' style={{ color: 'green' }} id="post-form">SUCCESS!</h2>
+                        <button className="btn btn-primary btn-lg">Create</button>
                     </form>
                 </div>
+                <div className='success d-none' id='post-form' >
+                    <img src='https://i.etsystatic.com/8806157/r/il/c08af8/1183447726/il_570xN.1183447726_sneo.jpg' width="500" height="500" className="rounded mx-auto d-block" />
+                </div>
+
             </>
         )
     }
