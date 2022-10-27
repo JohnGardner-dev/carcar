@@ -7,7 +7,6 @@ import ListSalesHistory from './ListSalesHistory';
 import AddSalesPerson from './AddSalesPerson';
 import AddCustomer from './AddCustomer';
 import CreateSalesRecord from './CreateSalesRecord';
-
 import TechnicianForm from './TechnicianForm';
 import AppointmentHistory from './AppointmentHistory'
 import ListManufacturers from './ListManufacturers';
@@ -19,9 +18,9 @@ import AutomobileForm from './AutomobileForm';
 
 
 function App(props) {
-  if (props.appointments === undefined) {
-    return null
-  }
+  // if (props.appointments === undefined) {
+  //   return null
+  // }
 
   return (
     <BrowserRouter>
