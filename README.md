@@ -46,7 +46,7 @@ There is a foreign key to the Technician Model to see which technicians there ar
 |  "owner"		  |  `CharField`   | `max_length: 100 (required)` 				|
 |  "date"		  |  `DateField`   |   							  				|
 |  "time"		  |  `TimeField`   | 							  				|
-|  "reason"		  |  `TextField`   | `  						  				|
+|  "reason"		  |  `TextField`   |    						  				|
 |  "technician"	  |  `ForeignKey`  | `Technician`<br>`on_delete=models.CASCADE` |
 |  "completed"	  |  `BooleanField`| `default = False`<br> `null=True`  		|
 
