@@ -30,10 +30,10 @@ class ListAppointment extends React.Component {
         method: "delete"
       }
 
-      const response = await fetch(deleteUrl, fetchConfig)
+      await fetch(deleteUrl, fetchConfig)
 
         const newState = copy.indexOf(appointment)
-        const result = copy.splice(newState,1)
+        copy.splice(newState,1)
         this.setState({appointments:copy})
 
   }
@@ -45,14 +45,12 @@ class ListAppointment extends React.Component {
       method: "put"
     }
 
-    const response = await fetch(completeUrl,fetchConfig)
-    console.log("RESPONSE", response)
+    await fetch(completeUrl,fetchConfig)
 
-    if(response.ok) {
       const newState = copy.indexOf(appointment)
-      const result = copy.splice(newState,1)
+      copy.splice(newState,1)
       this.setState({appointments:copy})
-  }
+
 }
 
   render() {

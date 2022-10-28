@@ -10,6 +10,7 @@ class TechnicianForm extends React.Component {
         this.handleNameChange = this.handleNameChange.bind(this)
         this.handleNumberChange = this.handleNumberChange.bind(this)
         this.handleSubmit = this.handleSubmit.bind(this)
+        this.handleClick = this.handleClick.bind(this);
     }
 
     async handleSubmit(event) {
@@ -29,11 +30,11 @@ class TechnicianForm extends React.Component {
         if (response.ok) {
             // const newTechnician = await response.json();
 
-            const cleared = {
-                name: '',
-                number: ''
-            };
-            this.setState(cleared)
+            // const cleared = {
+            //     name: '',
+            //     number: ''
+            // };
+            // this.setState(cleared)
 
             var preElement = document.getElementById("pre-form");
             preElement.classList.add("d-none")
@@ -51,6 +52,21 @@ class TechnicianForm extends React.Component {
     handleNumberChange(event) {
         const value = event.target.value
         this.setState({ number: value })
+    }
+
+    handleClick(event) {
+
+        const cleared = {
+            name: '',
+            number: ''
+        };
+        this.setState(cleared)
+
+        var preElement = document.getElementById("pre-form");
+        preElement.classList.remove("d-none")
+
+        var postElement = document.getElementById("post-form");
+        postElement.classList.add("d-none")
     }
 
 
@@ -75,9 +91,10 @@ class TechnicianForm extends React.Component {
                         </div>
                     </div>
                 </div>
-                <div className='success d-none' id='post-form' >
-                    <img src='https://i.etsystatic.com/8806157/r/il/c08af8/1183447726/il_570xN.1183447726_sneo.jpg' width="500" height="500" className="rounded mx-auto d-block" alt='' />
-                </div>
+                <div className='col text-center d-none ' id='post-form' >
+                    <img src='https://i.etsystatic.com/8806157/r/il/c08af8/1183447726/il_570xN.1183447726_sneo.jpg' width="500" height="500" className="rounded mx-auto d-block" alt=''/>
+                    <button onClick={this.handleClick} className="btn btn-primary btn-lg" id='post-form'>Add Another?</button>
+                    </div>
             </div>
         )
     }
