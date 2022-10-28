@@ -1,10 +1,27 @@
-import {React, useState} from "react";
+import {React, useEffect, useState} from "react";
 
 
 
-function AppointmentHistory(props) {
+function AppointmentHistory() {
 
-    const [searchInput, setSearchInput] = useState("");
+  const [searchInput, setSearchInput] = useState("");
+  const [appointments, setAppointments] = useState([]);
+
+  useEffect(() => {
+    getAppointments()
+  },[])
+
+  async function getAppointments () {
+    const url = 'http://localhost:8080/api/appointments/'
+    const response = await fetch(url)
+
+
+    if (response.ok) {
+      const appointments = await response.json()
+      setAppointments(appointments)
+    }
+  }
+
 
     const handleChange = (event) => {
         event.preventDefault()
@@ -33,8 +50,8 @@ function AppointmentHistory(props) {
               </tr>
             </thead>
             <tbody>
-            {props.appointments.filter(appointment => appointment.vin === searchInput).map(appointment => {
-              return (
+            {appointments.appointments ? appointments.appointments.filter(appointment => appointment.vin === searchInput).map(appointment =>
+               (
                 <tr key={appointment.id}>
                   <td>{ appointment.vin }</td>
                   <td>{ appointment.owner }</td>
@@ -44,8 +61,8 @@ function AppointmentHistory(props) {
                   <td>{appointment.technician.name}</td>
                   <td>{ appointment.vip }</td>
                 </tr>
-              );
-            })}
+              )
+            ) :null}
             </tbody>
             </table>
             </div>

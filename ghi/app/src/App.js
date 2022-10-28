@@ -17,10 +17,7 @@ import ListAutomobiles from './ListAutomobiles';
 import AutomobileForm from './AutomobileForm';
 
 
-function App(props) {
-  // if (props.appointments === undefined) {
-  //   return null
-  // }
+function App() {
 
   return (
     <BrowserRouter>
@@ -35,7 +32,7 @@ function App(props) {
           <Route path="/service/technician" element={<TechnicianForm />} />
           <Route path="/service/appointments" element={<ListAppointment />} />
           <Route path="/service/appointments/new" element={<AppointmentForm />} />
-          <Route path="/service/appointments/history" element={<AppointmentHistory appointments={props.appointments} />} />
+          <Route path="/service/appointments/history" element={<AppointmentHistory />} />
           <Route path="/manufacturers" element={<ListManufacturers />} />
           <Route path="/manufacturers/new" element={<ManufacturerForm />} />
           <Route path="/models" element={<ListModels />} />
