@@ -245,3 +245,95 @@ There is a foreign key to the Technician Model to see which technicians there ar
 	`docker compose up`
 6.  Open browser to http://localhost:3000 to make sure it’s running
 7.  Once it’s up and running, you can begin putting in data! The flow of the NavBar is representative of the flow of data. Start with Manufacturer, then Vehicle Models, then Automobile, and so on.
+
+## Inputting data through Insomnia using the POST method
+---
+
+### **Add a Manufacturer**
+>  http://localhost:8100/api/manufacturers/
+
+```json
+		{
+			"name": "Ford"
+		}
+```
+
+### **Add a Vehicle Model**
+>  http://localhost:8100/api/models/
+
+```json
+		{
+			"name": "Mustang",
+  			"manufacturer_id": "1",
+			"picture_url": "https://s.aolcdn.com/dims-global/dims3/GLOB/legacy_thumbnail/640x400/quality/80/https://s.aolcdn.com/commerce/autodata/images/USD20FOC051B021001.jpg"
+		}
+```
+
+### **Add a Automobile Vehicle**
+> http://localhost:8100/api/automobiles/
+
+```json
+		{
+	 		"color": "black",
+	 		"year": 2020,
+	 		"vin": "123456789",
+	 		"model_id": 1
+		}
+```
+
+### **Add a Technician**
+> http://localhost:8080/api/technicians/
+
+```json
+		{
+			"name": "Jack",
+			"number": 12345
+		}
+```
+
+### **Add a Service Appointment**
+> http://localhost:8080/api/appointments/
+
+```json
+		{
+	 		"vin": "123456789",
+	 		"owner": "you",
+	 		"date": "2022-10-24",
+	 		"time": "5:30:00",
+	 		"reason": "Tire Alignment",
+	 		"technician": 1
+		}
+```
+
+### **Add a Sales Person**
+> http://localhost:8090/api/salespersons/
+
+```json
+		{
+			"name": "jack",
+			"employee_id": "001"
+		}
+```
+
+### **Add a Customer**
+> http://localhost:8090/api/customers/
+
+``` json
+		{
+			"name": "Joe",
+			"address": "123 Main St",
+			"phone_number": "123456789"
+		}
+```
+
+### **Add a Sales Record**
+> http://localhost:8090/api/records/
+
+```json
+		{
+			"automobile": "/api/automobiles/123456789/",
+			"sales_person": "jack",
+			"customer": "Joe",
+			"sales_price": 100
+		}
+```
