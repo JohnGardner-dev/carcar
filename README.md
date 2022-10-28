@@ -6,9 +6,6 @@
 # **Team**
 ---
 **Sophie Nguyen** -- Service API
-
-<br>
-
 **John Gardner** -- Sales API
 ---
 
@@ -220,7 +217,7 @@ There is a foreign key to the Technician Model to see which technicians there ar
 
 ### **List of Service Appointments**
 
-> This list shows all appointments in the application. However, these appointments are being filtered to show appointments that have the “completed” property as “False”. That way, when an appointment is completed, the user can click the “completed” button, which will update the completed property to “True” for the appointment., then the appointment will not show up on this list anymore.
+> This list shows all appointments in the application. However, these appointments are being filtered to show appointments that have the “completed” property as “False”. That way, when an appointment is completed, the user can click the “completed” button, which will update the completed property to “True” for the appointment, then the appointment will not show up on this list anymore.
 
 ### **VIP?**
 
