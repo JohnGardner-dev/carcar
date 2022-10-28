@@ -7,7 +7,7 @@
 ---
 **Sophie Nguyen** -- Service API
 
-<br><br>
+<br>
 
 **John Gardner** -- Sales API
 ---
