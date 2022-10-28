@@ -6,6 +6,9 @@
 # **Team**
 ---
 **Sophie Nguyen** -- Service API
+
+<br><br>
+
 **John Gardner** -- Sales API
 ---
 
