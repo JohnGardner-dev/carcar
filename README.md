@@ -5,7 +5,7 @@
 
 # **Team**
 ---
-**Sophie Nguyen** -- Service API
+**Sophie Nguyen** -- Service API  
 **John Gardner** -- Sales API
 ---
 
@@ -40,15 +40,15 @@
 There is a foreign key to the Technician Model to see which technicians there are
 
 
-| **MODEL FIELD** | **FIELD TYPE** | **OTHER ARGS**               				|
-| :-------------: | :------------: | :------------------------------------------|
-|   "vin"         |  `CharField`   | `max_length: 50 (required)`  				|
-|  "owner"		  |  `CharField`   | `max_length: 100 (required)` 				|
-|  "date"		  |  `DateField`   |   							  				|
-|  "time"		  |  `TimeField`   | 							  				|
-|  "reason"		  |  `TextField`   |    						  				|
-|  "technician"	  |  `ForeignKey`  | `Technician`<br>`on_delete=models.CASCADE` |
-|  "completed"	  |  `BooleanField`| `default = False`<br> `null=True`  		|
+| **MODEL FIELD** | **FIELD TYPE** | **OTHER ARGS**                             |
+| :-------------: | :------------: | :----------------------------------------- |
+|      "vin"      |  `CharField`   | `max_length: 50 (required)`                |
+|     "owner"     |  `CharField`   | `max_length: 100 (required)`               |
+|     "date"      |  `DateField`   |                                            |
+|     "time"      |  `TimeField`   |                                            |
+|    "reason"     |  `TextField`   |                                            |
+|  "technician"   |  `ForeignKey`  | `Technician`<br>`on_delete=models.CASCADE` |
+|   "completed"   | `BooleanField` | `default = False`<br> `null=True`          |
 
 <br><br>
 
@@ -57,10 +57,10 @@ There is a foreign key to the Technician Model to see which technicians there ar
 >When creating a technician, the following properties are needed: name and employee number
 
 
-| **MODEL FIELD** | **FIELD TYPE** | **OTHER ARGS**               				|
-| :-------------: | :------------: | :------------------------------------------|
-|  "name"         |  `CharField`   | `max_length: 100 (required)`  				|
-|  "number"		  |  `IntegerField`| 											|
+| **MODEL FIELD** | **FIELD TYPE** | **OTHER ARGS**               |
+| :-------------: | :------------: | :--------------------------- |
+|     "name"      |  `CharField`   | `max_length: 100 (required)` |
+|    "number"     | `IntegerField` |                              |
 
 
 <br><br>
@@ -70,12 +70,12 @@ There is a foreign key to the Technician Model to see which technicians there ar
 > This model is a value object that is used for polling the inventory api. We have set up polling so that every minute or so, the inventory api sends their automobile data to service. The service microservice then takes that data and either creates or updates the automobile as an instance of the AutomobileVO.
 
 
-| **MODEL FIELD** | **FIELD TYPE** 			  | **OTHER ARGS**       		|
-| :-------------: | :------------------------:| :---------------------------|
-|  "color"        |  `CharField`   			  | `max_length: 50 (required)` |
-|  "year"    	  |`PositiveSmallIntegerField`| 							|
-|  "vin"         |  `CharField`   			  | `max_length: 17 (required)` |
-|  "import_href" |  `CharField`				  | `max_length: 200 (required)`|
+| **MODEL FIELD** |       **FIELD TYPE**        | **OTHER ARGS**               |
+| :-------------: | :-------------------------: | :--------------------------- |
+|     "color"     |         `CharField`         | `max_length: 50 (required)`  |
+|     "year"      | `PositiveSmallIntegerField` |                              |
+|      "vin"      |         `CharField`         | `max_length: 17 (required)`  |
+|  "import_href"  |         `CharField`         | `max_length: 200 (required)` |
 
 
 <br><br>
@@ -119,6 +119,17 @@ There is a foreign key to the Technician Model to see which technicians there ar
 ### **AutomobileVO Model** -- (Value object of Automobiles model in Inventory Microservice)
 
 >This model is a value object that is used for polling the inventory api. We have set up polling so that every minute or so, the Sales Poller gets the automobile data from Inventory API. The Sales Microservice then takes that data and either creates or updates the automobile as an instance of the AutomobileVO.
+
+| **MODEL FIELD** |   **FIELD TYPE**    | **OTHER ARGS**               |
+| :-------------: | :-----------------: | :--------------------------- |
+|  "import_href"  |     `CharField`     | `max_length: 100 (required)` |
+|     "color"     |     `CharField`     | `max_length: 30 (required)`  |
+|     "year"      | `SmallIntegerField` | `none`                       |
+|      "vin"      |     `CharField`     | `max_length: 50 (required)`  |
+|     "model"     |     `CharField`     | `max_length: 50 (required)`  |
+| "manufacturer"  |     `CharField`     | `max_length: 100 (required)` |
+|     "sold"      |   `BooleanField`    | `default=False (required)`   |
+
 
 <br><br>
 
@@ -227,6 +238,14 @@ There is a foreign key to the Technician Model to see which technicians there ar
 
 > This feature allows the user to search from all service appointments based on a VIN. This is done with just a function and hook. I used a hook to set the input in the search bar and used that input as a filter for my list of appointments
 
+### **Sales Person History**
+
+> This feature allows the user to view all the Sales Records for a specific Sales Person. This is done with a drop down menu that loops through all of the Sales Records, finds the one that match the selected Sales Person, and changes the table to list out that Sales Person's individual sales.
+
+### **Create a Sales Record**
+
+> This feature allows the user to create a Sales Record using a Customer, Sales Person, and AutomobileVO from the database. All AutomobileVOs have a field "sold" that initiates to False. When a Sales Record is created with a specific AutomobileVO, that "sold" field updates to True. The list of AutomobileVOs that the user can choose from when creating a Sales Record is *only* the AutomobileVOs that have not been sold yet ensuring that vehicles don't get "double sold."
+
 
 <br>
 
@@ -310,7 +329,7 @@ There is a foreign key to the Technician Model to see which technicians there ar
 
 ```json
 		{
-			"name": "jack",
+			"name": "Alice",
 			"employee_id": "001"
 		}
 ```
@@ -320,9 +339,9 @@ There is a foreign key to the Technician Model to see which technicians there ar
 
 ``` json
 		{
-			"name": "Joe",
+			"name": "Bob",
 			"address": "123 Main St",
-			"phone_number": "123456789"
+			"phone_number": "0123456789"
 		}
 ```
 
@@ -332,8 +351,8 @@ There is a foreign key to the Technician Model to see which technicians there ar
 ```json
 		{
 			"automobile": "/api/automobiles/123456789/",
-			"sales_person": "jack",
-			"customer": "Joe",
+			"sales_person": "Alice",
+			"customer": "Bob",
 			"sales_price": 100
 		}
 ```
