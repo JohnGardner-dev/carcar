@@ -19,7 +19,6 @@ async function loadAppointments() {
     root.render(
       <React.StrictMode>
         <App
-          appointments={appointmentData.appointments}
           loadAppointments={loadAppointments} />
       </React.StrictMode>
     )

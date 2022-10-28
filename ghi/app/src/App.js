@@ -33,7 +33,7 @@ function App(props) {
           <Route path="/sales/records/new/" element={<CreateSalesRecord />} />
           <Route path="/sales/records/" element={<ListSalesHistory />} />
           <Route path="/service/technician" element={<TechnicianForm />} />
-          <Route path="/service/appointments" element={<ListAppointment appointments={props.appointments} loadAppointments={props.loadAppointments} />} />
+          <Route path="/service/appointments" element={<ListAppointment />} />
           <Route path="/service/appointments/new" element={<AppointmentForm />} />
           <Route path="/service/appointments/history" element={<AppointmentHistory appointments={props.appointments} />} />
           <Route path="/manufacturers" element={<ListManufacturers />} />
