@@ -20,7 +20,6 @@ class AddCustomer extends React.Component {
     async handleSubmit(event) {
         event.preventDefault();
         const data = { ...this.state };
-        console.log(data)
         data["phone_number"] = data["phoneNumber"]
         delete data.phoneNumber
 
@@ -34,11 +33,9 @@ class AddCustomer extends React.Component {
         };
 
         const response = await fetch(customerUrl, fetchConfig);
-        console.log(response);
 
         if (response.ok) {
             const newCustomer = await response.json();
-            console.log(newCustomer);
             // const cleared = {
             //     name: '',
             //     address: '',

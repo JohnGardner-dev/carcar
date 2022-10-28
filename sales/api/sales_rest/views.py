@@ -24,6 +24,7 @@ class AutomobileVODetailEncoder(ModelEncoder):
 class SalesPersonDetailEncoder(ModelEncoder):
     model = SalesPerson
     properties = [
+        "id",
         "name",
         "employee_id",
     ]
@@ -32,6 +33,7 @@ class SalesPersonDetailEncoder(ModelEncoder):
 class CustomerDetailEncoder(ModelEncoder):
     model = Customer
     properties = [
+        "id",
         "name",
         "address",
         "phone_number",

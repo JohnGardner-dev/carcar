@@ -36,8 +36,6 @@ class CreateSalesRecord extends React.Component {
         data["sales_price"] = parseInt(data["salesPrice"])
         delete data.salesPrice
 
-        console.log(data)
-
         const recordsUrl = 'http://localhost:8090/api/records/';
         const fetchConfig = {
             method: "post",
@@ -48,32 +46,41 @@ class CreateSalesRecord extends React.Component {
         };
 
         const response = await fetch(recordsUrl, fetchConfig)
-        console.log(response)
 
         if (response.ok) {
             const newRecord = await response.json();
-            console.log(newRecord)
-            const cleared = {
-                // automobiles: [],
-                automobile: '',
-                // salesPersons: [],
-                salesPerson: '',
-                // customers: [],
-                customer: '',
-                salesPrice: '',
+            const results = []
+            const copy = this.state.automobiles
+            for (let car of copy) {
+                if (car.vin !== this.state.automobile) {
+                    results.push(car)
+                }
             }
+            this.setState({ automobiles: results })
+            if (newRecord["message"] !== "Car has already been sold") {
+                const cleared = {
+                    automobile: '',
+                    salesPerson: '',
+                    customer: '',
+                    salesPrice: '',
+                }
 
-            this.setState(cleared);
-            const preElement = document.getElementById("pre-form");
-            preElement.classList.add("d-none")
+                this.setState(cleared);
+                const preElement = document.getElementById("pre-form");
+                preElement.classList.add("d-none")
 
-            const postElement = document.getElementById("post-form");
-            postElement.classList.remove("d-none")
+                const postElement = document.getElementById("post-form");
+                postElement.classList.remove("d-none")
+            } else {
+                const preElement = document.getElementById("pre-form");
+                preElement.classList.add("d-none")
+                const alreadySold = document.getElementById("already-sold");
+                alreadySold.classList.remove("d-none")
+            }
         }
     }
 
     async componentDidMount() {
-        // get list of available AutombileVOs to sell
         const automobilesUrl = "http://localhost:8090/api/inventory/";
         const automobilesResponse = await fetch(automobilesUrl);
 
@@ -87,7 +94,6 @@ class CreateSalesRecord extends React.Component {
             }
             this.setState({ automobiles: automobiles })
         }
-        // get list of current SalesPersons
         const salesPersonsUrl = "http://localhost:8090/api/salespersons/";
         const salesPersonsResponse = await fetch(salesPersonsUrl);
 
@@ -169,7 +175,7 @@ class CreateSalesRecord extends React.Component {
                                 <option value=''>Choose a Sales Person</option>
                                 {this.state.salesPersons.map(salesPerson => {
                                     return (
-                                        <option key={salesPerson.name} value={salesPerson.name}>({salesPerson.name}) -- {salesPerson.employee_id}</option>
+                                        <option key={salesPerson.id} value={salesPerson.name}>({salesPerson.name}) -- {salesPerson.employee_id}</option>
                                     )
                                 })}
                             </select>
@@ -179,7 +185,7 @@ class CreateSalesRecord extends React.Component {
                                 <option value=''>Choose a Customer</option>
                                 {this.state.customers.map(customer => {
                                     return (
-                                        <option key={customer.name} value={customer.name}>{customer.name}</option>
+                                        <option key={customer.id} value={customer.name}>{customer.name}</option>
                                     )
                                 })}
                             </select>
@@ -199,6 +205,9 @@ class CreateSalesRecord extends React.Component {
                 <div className='col text-center d-none' id='post-form' >
                     <img src='https://i.etsystatic.com/8806157/r/il/c08af8/1183447726/il_570xN.1183447726_sneo.jpg' width="500" height="500" className="rounded mx-auto d-block" />
                     <button onClick={this.handleClick} className="btn btn-primary btn-lg" id='post-form'>Add Another?</button>
+                </div>
+                <div className='col text-center d-none' id='already-sold'>
+                    <h1>That Car Has Already Been Sold</h1>
                 </div>
             </>
         )

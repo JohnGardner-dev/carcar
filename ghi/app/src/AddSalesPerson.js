@@ -19,7 +19,6 @@ class AddSalesPerson extends React.Component {
         const data = { ...this.state };
         data["employee_id"] = data["employeeID"]
         delete data.employeeID
-        console.log(data)
 
         const salesPersonUrl = 'http://localhost:8090/api/salespersons/';
         const fetchConfig = {
@@ -31,11 +30,9 @@ class AddSalesPerson extends React.Component {
         };
 
         const response = await fetch(salesPersonUrl, fetchConfig);
-        console.log(response);
 
         if (response.ok) {
             const newSalesPerson = await response.json();
-            console.log(newSalesPerson);
             const cleared = {
                 name: '',
                 employeeID: '',
