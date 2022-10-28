@@ -34,21 +34,52 @@
 ## **Models**
 
 ---
-
 ### **Appointment Model** -- (used to create a service appointment)
 
 >When creating a service appointment, the following properties are needed: VIN of vehicle, vehicle owner, date and time of appointment, reason, and assigned technician. There is also a completed property that has its default set to “False”
 There is a foreign key to the Technician Model to see which technicians there are
 
-### **Technician Model** -- (used to create a Technician)
+
+| **MODEL FIELD** | **FIELD TYPE** | **OTHER ARGS**               				|
+| :-------------: | :------------: | :------------------------------------------|
+|   "vin"         |  `CharField`   | `max_length: 50 (required)`  				|
+|  "owner"		  |  `CharField`   | `max_length: 100 (required)` 				|
+|  "date"		  |  `DateField`   |   							  				|
+|  "time"		  |  `TimeField`   | 							  				|
+|  "reason"		  |  `TextField`   | `  						  				|
+|  "technician"	  |  `ForeignKey`  | `Technician`<br>`on_delete=models.CASCADE` |
+|  "completed"	  |  `BooleanField`| `default = False`<br> `null=True`  		|
+
+<br><br>
+
+### **Technician Model** -- (used to create a technician)
 
 >When creating a technician, the following properties are needed: name and employee number
 
-### **AutomobileVO Model** -- (Value object of Automobiles model in Inventory Microservice)
+
+| **MODEL FIELD** | **FIELD TYPE** | **OTHER ARGS**               				|
+| :-------------: | :------------: | :------------------------------------------|
+|  "name"         |  `CharField`   | `max_length: 100 (required)`  				|
+|  "number"		  |  `IntegerField`| 											|
+
+
+<br><br>
+
+### **AutomobileVO Model** -- (used to create an Automobile)
 
 > This model is a value object that is used for polling the inventory api. We have set up polling so that every minute or so, the inventory api sends their automobile data to service. The service microservice then takes that data and either creates or updates the automobile as an instance of the AutomobileVO.
 
+
+| **MODEL FIELD** | **FIELD TYPE** 			  | **OTHER ARGS**       		|
+| :-------------: | :------------------------:| :---------------------------|
+|  "color"        |  `CharField`   			  | `max_length: 50 (required)` |
+|  "year"    	  |`PositiveSmallIntegerField`| 							|
+|  "vin"         |  `CharField`   			  | `max_length: 17 (required)` |
+|  "import_href" |  `CharField`				  | `max_length: 200 (required)`|
+
+
 <br><br>
+
 
 ## **API Views**
 
