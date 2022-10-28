@@ -2,7 +2,7 @@
 
 Team:
 
-* Person 1 - Which microservice?
+* Sophie Nguyen - Service API
 * John Gardner - Sales API
 
 ## Design
@@ -43,3 +43,91 @@ Team:
 
 Explain your models and integration with the inventory
 microservice, here.
+
+## Getting the App started
+
+1. Git clone into your local repository
+	* `git clone <<repo>>`
+
+2. cd into it
+	* `cd project-beta`
+
+4. Create a volume and name it beta-data
+	* `docker volume create beta-data`
+
+5. Build the image
+	* `docker compose build`
+
+6. Run the container
+	* `docker compose up`
+
+7. Open browser to localhost:3000 to make sure it’s running
+
+8. Once it’s up and running, you can begin putting in data! The flow of the NavBar is representative of the flow of data. Start with Manufacturer, then Vehicle Models, then Automobile, and so on.
+
+## Inputting data through Insomnia using the POST method
+
+	* Add a Manufacturer
+		* http://localhost:8100/api/manufacturers/
+		* {
+			"name": "Ford"
+		}
+
+	* Add a Vehicle Model
+		* http://localhost:8100/api/models/
+		* {
+			"name": "Mustang",
+  			"manufacturer_id": "1",
+			"picture_url": "https://s.aolcdn.com/dims-global/dims3/GLOB/legacy_thumbnail/640x400/quality/80/https://s.aolcdn.com/commerce/autodata/images/USD20FOC051B021001.jpg"
+		}
+
+	* Add an Automobile Vehicle
+		* http://localhost:8100/api/automobiles/
+		*  {
+	 		"color": "black",
+	 		"year": 2020,
+	 		"vin": "123456789",
+	 		"model_id": 1
+		}
+
+	* Add a Technician
+		* http://localhost:8080/api/technicians/
+		* 	{
+			"name": "Jack",
+			"number": 12345
+		}
+
+	* Add a Service Appointment
+		* http://localhost:8080/api/appointments/
+		*  {
+	 		"vin": "123456789",
+	 		"owner": "you",
+	 		"date": "2022-10-24",
+	 		"time": "5:30:00",
+	 		"reason": "Tire Alignment",
+	 		"technician": 1
+		}
+
+	* Add a Sales Person
+		* http://localhost:8090/api/salespersons/
+		* 	{
+			"name": "jack",
+			"employee_id": "001"
+		}
+
+	* Add a customer
+		* http://localhost:8090/api/customers/
+		*  {
+			"name": "Joe",
+			"address": "123 Main St",
+			"phone_number": "123456789"
+		}
+
+	* Add a Sales Record
+		* http://localhost:8090/api/records/
+		* {
+			"automobile": "/api/automobiles/123456789/",
+			"sales_person": "jack",
+			"customer": "Joe",
+			"sales_price": 100
+		}
